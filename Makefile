@@ -1,8 +1,7 @@
-SHELL := /bin/bash/
 .PHONY: venv init
 
 venv:
-	python -m venv .venv
+	virtualenv -p /usr/bin/python3.6 .venv
 
 init:
 	pip install --upgrade pip

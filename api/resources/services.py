@@ -37,7 +37,7 @@ def init_app(app: Flask):
     @app.route("/delete-map/<string:map_name>/", methods=["DELETE"])
     def del_logistic_map(map_name):
         result = LogisticMap.query.filter_by(name=map_name).first() or abort(
-            409, description=f"Network {network_name} does not exist, removal canceled."
+            409, description=f"Network {map_name} does not exist, removal canceled."
         )
         if result:
             db.session.delete(result)
