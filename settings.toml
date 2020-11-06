@@ -1,0 +1,16 @@
+[default]
+DEBUG = false
+SQLALCHEMY_DATABASE_URI = 'sqlite:///development.db'
+SQLALCHEMY_TRACK_MODIFICATIONS = false
+TITLE = "Koper-api"
+EXTENSIONS = [
+    "api.extensions.database:init_app",
+    "api.extensions.commands:init_app",
+    "api.resources.services:init_app"
+]
+
+[testing]
+SQLALCHEMY_DATABASE_URI = 'sqlite:///testing.db'
+
+[production]
+SQLALCHEMY_DATABASE_URI = 'sqlite:///production.db'
