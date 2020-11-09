@@ -1,4 +1,5 @@
-.PHONY: venv init
+.PHONY: test init
+.DEFAULT_GOAL: test
 
 venv:
 	virtualenv -p /usr/bin/python3.6 .venv
@@ -8,7 +9,7 @@ init:
 	pip install -r requirements.txt
 
 test:
-	pytest test/ -v
+	pytest test\ -v
 
 clean:
 	@find . -name '*.pyc' -exec rm -rf {} \;
