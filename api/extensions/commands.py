@@ -16,15 +16,15 @@ def populate_db():
             name="Koper MOCK network",
             network=str(
                 [
-                    ["A", "B", 10],
-                    ["B", "C", 25],
-                    ["C", "D", 30],
-                    ["D", "E", 30],
-                    ["A", "C", 50],
-                    ["B", "D", 15],
-                    ["C", "E", 45],
-                    ["B", "E", 50],
-                    ["A", "D", 90],
+                    ["A", "B", 10.0],
+                    ["B", "C", 25.0],
+                    ["C", "D", 30.0],
+                    ["D", "E", 30.0],
+                    ["A", "C", 50.0],
+                    ["B", "D", 15.0],
+                    ["C", "E", 45.0],
+                    ["B", "E", 50.0],
+                    ["A", "D", 90.0],
                 ]
             ),
         ),
@@ -32,11 +32,11 @@ def populate_db():
             name="Koper Second Map",
             network=str(
                 [
-                    ["Red", "Blue", 20],
-                    ["Green", "Yellow", 50],
-                    ["Brown", "Blue", 40],
-                    ["Orange", "Red", 25],
-                    ["Pink", "Green", 50],
+                    ["Red", "Blue", 20.0],
+                    ["Green", "Yellow", 50.0],
+                    ["Brown", "Blue", 40.0],
+                    ["Orange", "Red", 25.0],
+                    ["Pink", "Green", 50.0],
                 ]
             ),
         ),

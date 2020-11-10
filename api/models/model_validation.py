@@ -82,7 +82,7 @@ def calculate_best_route(map, start, goal, vehicle_perfomance, fuel_cost):
             path.insert(0, currentNode)
             currentNode = predecessor[currentNode]
         except KeyError:
-            print('Path not reachable')
+            print("Path not reachable")
             break
     path.insert(0, start)
     if shortest_distance[goal] != infinity:

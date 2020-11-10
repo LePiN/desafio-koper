@@ -3,16 +3,17 @@ from flask import Flask, request, abort, jsonify
 from api.models.model_dto import BestTrack
 from api.models.model_dao import LogisticMap
 from api.extensions.database import db
-from api.models.model_validation import validate_logistic_json, validate_best_track_json, calculate_best_route
+from api.models.model_validation import (
+    validate_logistic_json,
+    validate_best_track_json,
+    calculate_best_route,
+)
 
 
 def init_app(app: Flask):
-
-
     @app.route("/", methods=["GET"])
     def home_options():
         return "<h1>Welcome to Koper API! Read documents to find valid requests.</h1>"
-
 
     @app.route("/find-map/<string:map_name>/", methods=["GET"])
     def find_logistic_map(map_name):
@@ -109,8 +110,12 @@ def init_app(app: Flask):
                 map_name, start_point, destination_point, vehicle_performance, fuel_cost
             )
             best_track_distance, best_track, best_track_cost = calculate_best_route(
-                json.loads(reference_map.network.replace("'", '"')), start_point, destination_point,
-                vehicle_performance, fuel_cost)
+                json.loads(reference_map.network.replace("'", '"')),
+                start_point,
+                destination_point,
+                vehicle_performance,
+                fuel_cost,
+            )
             best_track_result.best_track = best_track
             best_track_result.best_track_distance = best_track_distance
             best_track_result.best_track_cost = best_track_cost

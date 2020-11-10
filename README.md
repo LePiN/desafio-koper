@@ -61,7 +61,6 @@ pytest test\ -v
 Efetuar teste de convenção de código:
 ```
 black api/
-make code-convention
 flake8 --exclude=.venv --max-line-length=120
 ```
 

@@ -23,13 +23,15 @@ def test_add_logistic_map_sucess(client):
     mock_request_data = {
         "map_name": "MOCK Teste 3",
         "map_file": [
-            ["Carrot", "Apple", 25],
-            ["Orange", "Pinaple", 50],
-            ["Apple", "Peach", 75],
+            ["Carrot", "Apple", 25.0],
+            ["Orange", "Pinaple", 50.0],
+            ["Apple", "Peach", 75.0],
         ],
     }
     response = client.post(
-        "/add-map/", data=json.dumps(mock_request_data), content_type="application/json"
+        "/add-map/MOCK Teste 3/",
+        data=json.dumps(mock_request_data),
+        content_type="application/json",
     )
     assert response.status_code == 200
 
@@ -38,13 +40,15 @@ def test_add_logistic_map_fail(client):
     mock_request_data = {
         "map_name": "Koper MOCK network",
         "map_file": [
-            ["Carrot", "Apple", 25],
-            ["Orange", "Pinaple", 50],
-            ["Apple", "Peach", 75],
+            ["Carrot", "Apple", 25.0],
+            ["Orange", "Pinaple", 50.0],
+            ["Apple", "Peach", 75.0],
         ],
     }
     response = client.post(
-        "/add-map/", data=json.dumps(mock_request_data), content_type="application/json"
+        "/add-map/Koper MOCK network/",
+        data=json.dumps(mock_request_data),
+        content_type="application/json",
     )
     assert response.status_code == 409
 
@@ -83,6 +87,38 @@ def test_find_best_track_fail(client):
     }
     response = client.get(
         "/find-best-track/wrong MOCK/",
+        data=json.dumps(mock_request_data),
+        content_type="application/json",
+    )
+    assert response.status_code == 404
+
+
+def test_find_best_track_confirming_sucess(client):
+    mock_request_data = {
+        "map_name": "Koper MOCK network",
+        "start_point": "A",
+        "destination_point": "D",
+        "vehicle_performance": 10.0,
+        "fuel_cost": 2.5,
+    }
+    response = client.get(
+        "/find-best-track-confirming/Koper MOCK network/",
+        data=json.dumps(mock_request_data),
+        content_type="application/json",
+    )
+    assert response.status_code == 200
+
+
+def test_find_best_track_confirming_fail(client):
+    mock_request_data = {
+        "map_name": "Koper MOCK network",
+        "start_point": "A",
+        "destination_point": "D",
+        "vehicle_performance": 10.0,
+        "fuel_cost": 2.5,
+    }
+    response = client.get(
+        "/find-best-track-confirming/wrong MOCK/",
         data=json.dumps(mock_request_data),
         content_type="application/json",
     )
