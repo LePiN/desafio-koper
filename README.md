@@ -1,7 +1,7 @@
 # Projeto Koper Routes
 
-API para calculo do trajeto de menor custo  baseada em uma malha logistica de referencia, na perfomance estimada do 
-veiculo e no custo estipulado do combustivel.
+API para calculo do trajeto de menor custo  baseado em uma malha logistica de referencia, na perfomance estimada do 
+veiculo e no custo estipulado do combustivel. O processo utiliza o algoritmo de Djikstra para efetuar o referido calculo.
 ---
 
 ## Requisitos
@@ -20,8 +20,6 @@ git clone https://github.com/LePiN/desafio-koper.git
 Criar virtualenv dentro do projeto:
 ```
 virtualenv -p /usr/bin/python3.6 .venv
-ou
-make venv
 ```
 
 Ativar virtualenv:
