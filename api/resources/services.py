@@ -7,6 +7,13 @@ from api.models.model_validation import validate_logistic_json, validate_best_tr
 
 
 def init_app(app: Flask):
+
+
+    @app.route("/", methods=["GET"])
+    def home_options():
+        return "<h1>Welcome to Koper API! Read documents to find valid requests.</h1>"
+
+
     @app.route("/find-map/<string:map_name>/", methods=["GET"])
     def find_logistic_map(map_name):
         result = LogisticMap.query.filter_by(name=map_name).first() or abort(
@@ -79,7 +86,6 @@ def init_app(app: Flask):
             best_track_result._find_best_track(
                 json.loads(reference_map.network.replace("'", '"'))
             )
-            calculate_best_route(json.loads(reference_map.network.replace("'", '"')), start_point, destination_point)
             return jsonify(best_track_result.__dict__)
         else:
             abort(400, description=status_data)

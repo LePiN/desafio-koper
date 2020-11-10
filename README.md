@@ -80,7 +80,7 @@ rm -rf .tox/
 rm -rf docs/_build
 ```
 
-## Executando
+## Executando (dentro da pasta API)
 
 Criar banco de dados (rodar uma vez antes de criar o servidor)
 ```bash
