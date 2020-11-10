@@ -4,18 +4,19 @@ API para calculo do trajeto de menor custo  baseada em uma malha logistica de re
 veiculo e no custo estipulado do combustivel.
 ---
 
-## Clone
+## Requisitos
+- Python 3.6+
+- VirtualEnv
 
+## Clonar projeto
 ```bash
 git clone https://github.com/LePiN/desafio-koper.git
 ```
 
-## Requisitos
-- Python 3.6+
-- VirtualEnv
-- Make
+## Criar ambiente virtual
 
-## Ambiente Linux
+### Ambiente Linux
+
 Criar virtualenv dentro do projeto:
 ```
 virtualenv -p /usr/bin/python3.6 .venv
@@ -28,7 +29,8 @@ Ativar virtualenv:
 source .venv/bin/activate
 ```
 
-## Ambiente Windows
+### Ambiente Windows
+
 Criar diretório da virtualenv dentro do projeto:
 ```
 mkdir .venv
@@ -44,44 +46,40 @@ Ativar virtualenv:
 .venv\Scripts\activate
 ```
 
-Instalar as dependências:
+## Instalar as dependências do projeto
 ```
-make init
-```
-
-## Ambiente
-
-Python 3.6 + Ativar sua virtualenv
-
-Instalar as dependências:
-```
-make init
+pip install --upgrade pip
+pip install -r requirements.txt
 ```
 
-## Testes
-Efetuar o download do projeto:
+
+## Teste do projeto
+
+Efetuar teste unitários:
 ```
-git@gitlab.nexxera.com:traducao/python/jbs-banco-original-pagamento.git
+pytest test\ -v
 ```
 
-Instalar as dependências:
+Efetuar teste de convenção de código:
 ```
-make init
-```
-
-Efetuar teste na regra de negócio:
-```
-make test
-```
-
-Efetuar teste de cobertura de código:
-```
-make test-cov
+black api/
+make code-convention
+flake8 --exclude=.venv --max-line-length=120
 ```
 
 Limpar os dados gerados pelos testes:
 ```
-make clean
+@find . -name '*.pyc' -exec rm -rf {} \;
+@find . -name '__pycache__' -exec rm -rf {} \;
+@find . -name 'Thumbs.db' -exec rm -rf {} \;
+@find . -name '*~' -exec rm -rf {} \;
+rm -rf .cache
+rm -rf build
+rm -rf dist
+rm -rf *.egg-info
+rm -rf htmlcov
+rm -rf .tox/
+rm -rf docs/_build
 ```
 
 ## Executando
@@ -103,7 +101,7 @@ flask run
 
 Acesse:
 
-- Website: http://localhost:5000
+- Website: http://localhost:5000/
 - SERVIÇOS DISPONÍVEIS:
     - BUSCAR MAPA LOGISTICO PERSISTIDO:
         - http://127.0.0.1:5000/find-map/<string: name_map>/
@@ -178,11 +176,55 @@ Acesse:
               "best_track_cost": 6.25
             }
             ```
+    - BUSCAR MELHOR ROTA (CONFIRMAÇÃO POR OUTRO ALGORITMO):
+        - http://127.0.0.1:5000/find-best-track/<string: name_map>/
+        - Body (estrutura)
+            ```bash
+            {
+              "map_name":"string",
+              "start_point":"string",
+              "destination_point":"string",
+              "vehicle_performance":float,
+              "fuel_cost":float 
+            }
+            ````
+        - Body (example)
+            ```json
+            {
+              "map_name":"Koper MOCK network",
+              "start_point":"A",
+              "destination_point":"D",
+              "vehicle_performance":10.0,
+              "fuel_cost":2.5 
+            }
+            ```
+        - Result
+            ```json
+            {
+              "map_name": "Koper MOCK network",
+              "start_point": "A",
+              "destination_point": "D",
+              "vehicle_perfomance": 10.0,
+              "fuel_cost": 2.5,
+              "best_track": [
+                "A",
+                "B",
+                "D"
+              ],
+              "best_track_distance": 25.0,
+              "best_track_cost": 6.25
+            }
+            ```
+
+## Construído com:
+- Python3
+- Flask
+- Networkx
+- TOML
 
 
-## Structure
+## Observação:
+- O algoritmo de confirmação referenciado encontra-se em https://stackoverflow.com/questions/22897209/dijkstras-algorithm-in-python.
 
-```bash
-.
-
-```
+## Autor
+- Leandro Pieper Nues - lpnunes@gmail.com - https://www.linkedin.com/in/leandro-pieper-nunes/

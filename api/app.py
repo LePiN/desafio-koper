@@ -1,7 +1,5 @@
 from flask import Flask
-from api.extensions import database
 from api.extensions import configurations
-from api.resources import services
 
 
 def create_app(**config):

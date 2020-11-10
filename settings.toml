@@ -11,6 +11,3 @@ EXTENSIONS = [
 
 [testing]
 SQLALCHEMY_DATABASE_URI = 'sqlite:///testing.db'
-
-[production]
-SQLALCHEMY_DATABASE_URI = 'sqlite:///production.db'
