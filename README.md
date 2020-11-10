@@ -101,9 +101,9 @@ Acesse:
 
 - Website: http://localhost:5000/
 - SERVIÇOS DISPONÍVEIS:
-    - BUSCAR MAPA LOGISTICO PERSISTIDO:
+    - BUSCAR MAPA LOGISTICO PERSISTIDO(GET):
         - http://127.0.0.1:5000/find-map/<string: name_map>/
-    - PERSISTIR NOVO MAPA LOGISTICO:
+    - PERSISTIR NOVO MAPA LOGISTICO(POST):
         - http://127.0.0.1:5000/add-map/
             - Body (estrutura)
             ````bash
@@ -133,9 +133,9 @@ Acesse:
                   ]
                 }
                 ```
-    - REMOVER MAPA LOGISTICO PERSISTIDO:
+    - REMOVER MAPA LOGISTICO PERSISTIDO(DELETE):
         - http://127.0.0.1:5000/delete-map/<string: name_map>/
-    - BUSCAR MELHOR ROTA:
+    - BUSCAR MELHOR ROTA(GET):
         - http://127.0.0.1:5000/find-best-track/<string: name_map>/
         - Body (estrutura)
             ```bash
@@ -174,7 +174,7 @@ Acesse:
               "best_track_cost": 6.25
             }
             ```
-    - BUSCAR MELHOR ROTA (CONFIRMAÇÃO POR OUTRO ALGORITMO):
+    - BUSCAR MELHOR ROTA - CONFIRMAÇÃO POR OUTRO ALGORITMO (GET):
         - http://127.0.0.1:5000/find-best-track/<string: name_map>/
         - Body (estrutura)
             ```bash
